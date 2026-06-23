@@ -1,0 +1,17 @@
+# Credenciais - NUNCA versionar
+.env_kafka_connect
+.env_spark
+*.env
+
+# Cache Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Spark
+spark-warehouse/
+metastore_db/
+
+# IDE
+.idea/
+.vscode/

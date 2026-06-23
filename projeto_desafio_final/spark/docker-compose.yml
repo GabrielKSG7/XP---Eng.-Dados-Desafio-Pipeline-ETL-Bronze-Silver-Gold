@@ -1,0 +1,19 @@
+# Ambiente Spark via Docker: contêiner único com Jupyter + PySpark (modo local[*]).
+# Suficiente para o ETL Silver/Gold lendo/gravando no S3.
+# Acesso: http://localhost:8888  (token definido em JUPYTER_TOKEN abaixo)
+
+services:
+  jupyter-spark:
+    image: jupyter/pyspark-notebook:spark-3.5.0
+    container_name: jupyter-spark
+    ports:
+      - "8888:8888"
+    environment:
+      # Token fixo para facilitar o login no Jupyter.
+      JUPYTER_TOKEN: desafio
+    # Chaves AWS injetadas no contêiner (o notebook as lê via os.environ).
+    env_file:
+      - .env_spark
+    volumes:
+      # Monta a pasta atual em /home/jovyan/work (onde fica o etl-spark.ipynb).
+      - ./:/home/jovyan/work
